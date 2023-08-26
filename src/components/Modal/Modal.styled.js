@@ -11,7 +11,7 @@ export const StyledItemBottomWrapper = styled.div`
 `;
 export const StyledModalImg = styled.img`
   max-width: 100%;
-  height: 600px;
+  height: 400px;
 `;
 
 export const StyledCloseButton = styled.button`
