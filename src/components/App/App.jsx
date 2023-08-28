@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { notifyInputNotValue, notifyInputNotImg } from '../Notify/Notify';
+import { notifyInputNotImg } from '../Notify/Notify';
 import { Wrapper } from './App.styled';
 import { SearchBar } from 'components/Searchbar/Searchbar';
 import { fetchImages } from '../API';
@@ -49,20 +49,12 @@ export class App extends Component {
     }
   };
 
-  handleSubmit = evt => {
-    evt.preventDefault();
-    const newValue = evt.target.elements.query.value;
-    if (newValue.trim() === '') {
-      notifyInputNotValue();
-      return;
-    }
+  changeQuery = newQuery => {
     this.setState({
-      query: `${Date.now()}/${newValue}`,
+      query: `${Date.now()}/${newQuery}`,
       images: [],
       page: 1,
     });
-
-    evt.target.reset();
   };
 
   handleLoadMore = () => {
@@ -73,7 +65,7 @@ export class App extends Component {
     const { images, loading, loadingBonus } = this.state;
     return (
       <Wrapper>
-        <SearchBar onSubmit={this.handleSubmit} />
+        <SearchBar onSubmit={this.changeQuery} />
 
         {loading ? (
           <Loader loaderColor="#3f51b5" />
